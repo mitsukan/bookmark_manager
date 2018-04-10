@@ -10,6 +10,7 @@ enable :sessions
   end
 
   get '/view' do
+    @bookmarks = Link.all
     erb :view
   end
 
@@ -17,7 +18,10 @@ enable :sessions
     erb :add
   end
 
-
+  post '/adding' do
+    Link.add(params[:'link'])
+    redirect '/view'
+  end
 
 
   run! if app_file == $0
