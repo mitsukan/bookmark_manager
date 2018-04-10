@@ -16,12 +16,12 @@ class Link
   end
 
   def self.add(link)
-
     if ENV['RSPEC'] == 'running'
       con = PG.connect :dbname => 'bookmark_manager_test'
     else
       con = PG.connect :dbname => 'bookmark_manager'
     end
+
     con.exec "INSERT INTO BOOKMARKS(url) VALUES('#{link}')"
   end
 end

@@ -69,7 +69,7 @@ Mary then pointed out that I needed to create a `setup_test_database.rb` file, w
 
 In the tests for `link_spec.rb` and `app_spec.rb`, I reset the PG connection to the bookmark_manager_test database, and then run through the process of saving and then printing the row.
 
-However, I realised while looking into the `app_spec.rb`, I have realised that while I'm running the test, the capybara test wouldn't pass. I spoke to Sam Jones mentioned that I needed to look into environment variables that can keep tabs of when RSpec is working. In order to implement this, I would need an `if` statement that checks if an environment variable is active. If it is, then it would select the test database. If not, it would select the standard database. 
+However, I realised while looking into the `app_spec.rb`, I have realised that while I'm running the test, the capybara test wouldn't pass. I spoke to Sam Jones mentioned that I needed to look into environment variables that can keep tabs of when RSpec is working. In order to implement this, I would need an `if` statement that checks if an environment variable is active. If it is, then it would select the test database. If not, it would select the standard database.
 
 In the end, this is a long winded way of stubbing the function of the database using a test database that wipes itself at each RSpec run.
 
@@ -78,3 +78,12 @@ In the end, this is a long winded way of stubbing the function of the database u
 ```
 As a user, so that I can refer to them later, I want to save a bookmark.
 ```
+
+Even after adding the conditional into `link.rb`, I figured out that there would be no way to test the index webpage in a reasonable time for me to reach this next step and delete the test completely.
+I decided to ignore this and then go ahead to test and implement the `.add(url)` method.
+
+Once this has been done, I sketched a rough route plan for the website to organise how to call the different methods. I decided that the index page should show two buttons: view and add.
+
+The view button directs to `/view`, where it lists the bookmarks.
+
+The add button directs to `/add`, where it asks the user for a bookmark. It will post into `/adding` and then redirect to `/view`.

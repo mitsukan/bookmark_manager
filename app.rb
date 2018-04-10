@@ -23,6 +23,5 @@ enable :sessions
     redirect '/view'
   end
 
-
   run! if app_file == $0
 end
