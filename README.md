@@ -40,3 +40,20 @@ https://blog.jasonmeridth.com/posts/postgresql-command-line-cheat-sheet/
 http://www.cheat-sheets.org/sites/sql.su/
 
 `\q` quits back to the terminal.
+
+### Day 2: Jihin and Mary
+
+#### Interating with PostgreSQL from Ruby
+
+We will be doing this via a gem called pg. This is a module that allows Ruby programs to interact with PostgreSQL database.
+
+I have renamed the `bookmark.rb` file to `link.rb`, and changed the class name to `Link`.
+In order for pg to work, it needs to be included in the Gemfile, bundle installed, and then required in the `link.rb` file. From there, I followed the pg documentation:
+
+http://zetcode.com/db/postgresqlruby/
+
+Under the "Retrieving multiple rows of data" paragraph, I followed the syntaxing in order to connect to the database, selecting the data froml the database, and then tried the `rs.each do |row|` block. I then tried saving this all in the array. I ended up using the walkthrough to find out how to do this, and it turns out I would need to map through the hash and save it all in an array.
+
+The tests have been adjusted to reflect the new bookmarks and the correct link formatting.
+
+#### Upgrading your toolset
