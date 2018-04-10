@@ -1,12 +1,20 @@
-feature "show all the hardcoded bookmarks" do
+feature "Homepage links for view and add" do
 
-  scenario 'display destroy all software bookmark' do
+  scenario "Has a welcome screen" do
     visit '/'
-    con = PG.connect :dbname => 'bookmark_manager_test'
-    con.exec "INSERT INTO BOOKMARKS(url) VALUES('http://test.com')"
-    rs = con.exec "SELECT * FROM BOOKMARKS"
-    rs.map {|bookmark| bookmark['url]']}
-    expect(page).to have_content("http://test.com")
+    expect(page).to have_content("Bookmark Manager++ PRO PREMIUM v69")
+  end
+
+  scenario 'has a link for /view' do
+    visit '/'
+    click_button 'View Bookmarks'
+    expect(page).to have_content("Saved Bookmarks")
+  end
+
+  scenario 'has a link for /add' do
+    visit '/'
+    click_button 'Add Bookmark'
+    expect(page).to have_content("Please provide a bookmark to add:")
   end
 
 end

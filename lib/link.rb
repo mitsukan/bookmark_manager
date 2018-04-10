@@ -4,15 +4,24 @@ class Link
 
   def self.all
     begin
-      con = PG.connect :dbname => 'bookmark_manager', :user => 'jihinip'
+      if ENV['RSPEC'] == 'running'
+        con = PG.connect :dbname => 'bookmark_manager_test'
+      else
+        con = PG.connect :dbname => 'bookmark_manager'
+      end
+
       rs = con.exec "SELECT * FROM bookmarks"
       rs.map {|bookmark| bookmark['url']}
-      
-    rescue PG::Error => e
-      puts e.message
-    ensure
-      con.close if con
     end
   end
 
+  def self.add(link)
+
+    if ENV['RSPEC'] == 'running'
+      con = PG.connect :dbname => 'bookmark_manager_test'
+    else
+      con = PG.connect :dbname => 'bookmark_manager'
+    end
+    con.exec "INSERT INTO BOOKMARKS(url) VALUES('#{link}')"
+  end
 end
