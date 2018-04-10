@@ -1,16 +1,12 @@
 feature "show all the hardcoded bookmarks" do
-  scenario 'display google bookmark' do
-    visit '/'
-    expect(page).to have_content("http://google.com")
-  end
-
-  scenario 'display makers bookmark' do
-    visit '/'
-    expect(page).to have_content("http://makersacademy.com")
-  end
 
   scenario 'display destroy all software bookmark' do
     visit '/'
-    expect(page).to have_content("http://destroyallsoftware.com")
+    con = PG.connect :dbname => 'bookmark_manager_test'
+    con.exec "INSERT INTO BOOKMARKS(url) VALUES('http://test.com')"
+    rs = con.exec "SELECT * FROM BOOKMARKS"
+    rs.map {|bookmark| bookmark['url]']}
+    expect(page).to have_content("http://test.com")
   end
+
 end

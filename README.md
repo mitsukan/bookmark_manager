@@ -59,3 +59,22 @@ The tests have been adjusted to reflect the new bookmarks and the correct link f
 #### Upgrading your toolset
 
 We downloaded Tableplus and connected to the `bookmark_manager` database. From here, we can edit the database easily.
+
+
+#### Setting up a testing environment
+
+I first enabled ENV in spec-helper. From there, I started working on the `link_spec.rb`. As I was adding the connection to the new test database, I realised that the test had no way to reset the database so that it would only show the information that would be included in the test.
+
+Mary then pointed out that I needed to create a `setup_test_database.rb` file, which essentially acts like a script that clears the database whenever RSpec is run, so that the data would be correct.
+
+In the tests for `link_spec.rb` and `app_spec.rb`, I reset the PG connection to the bookmark_manager_test database, and then run through the process of saving and then printing the row.
+
+However, I realised while looking into the `app_spec.rb`, I have realised that while I'm running the test, the capybara test wouldn't pass. I spoke to Sam Jones mentioned that I needed to look into environment variables that can keep tabs of when RSpec is working. In order to implement this, I would need an `if` statement that checks if an environment variable is active. If it is, then it would select the test database. If not, it would select the standard database. 
+
+In the end, this is a long winded way of stubbing the function of the database using a test database that wipes itself at each RSpec run.
+
+#### Creating bookmarks
+
+```
+As a user, so that I can refer to them later, I want to save a bookmark.
+```
