@@ -57,3 +57,5 @@ Under the "Retrieving multiple rows of data" paragraph, I followed the syntaxing
 The tests have been adjusted to reflect the new bookmarks and the correct link formatting.
 
 #### Upgrading your toolset
+
+We downloaded Tableplus and connected to the `bookmark_manager` database. From here, we can edit the database easily.
