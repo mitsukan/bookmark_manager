@@ -9,7 +9,7 @@ describe Link do
       con.exec "INSERT INTO bookmarks(url) VALUES('http://test1.com')"
       expect(Link.all).to eq ["http://test1.com"]
     end
-    
+
   end
 
   describe '#self.add(url)' do
@@ -19,6 +19,10 @@ describe Link do
       expect(Link.all).to eq ["http://test2.com"]
     end
 
+    it 'Should reject non url entries' do
+      expect(Link.add("liorghoisfg")).to eq(false)
+      end
   end
+
 
 end

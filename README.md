@@ -87,3 +87,18 @@ Once this has been done, I sketched a rough route plan for the website to organi
 The view button directs to `/view`, where it lists the bookmarks.
 
 The add button directs to `/add`, where it asks the user for a bookmark. It will post into `/adding` and then redirect to `/view`.
+
+### Day 3: Gadiza and Jihin
+
+#### Validating bookmarks
+
+We first included `sinatra-flash` in the Gemfile and bundle installed it. We required flash and `uri` in the app.rb in order to carry out the checks.
+
+uri is a built in module from Ruby that allows checking of urls. Documentation can be found here:
+https://stackoverflow.com/questions/1805761/how-to-check-if-a-url-is-valid
+
+We first wrote tests for `link_spec.rb` that returns a false boolean if an invalid link has been entered. From there, following documentation for uri, I pasted in a line that evaluates a string for a URL.
+
+I then also wrote a test for the `add_spec.rb`, checking for an error message that gets flashed. I then implemented it into `app.rb`, as well as including the text into the `view.rb`.
+
+#### Wrapping database data in Program Objects
